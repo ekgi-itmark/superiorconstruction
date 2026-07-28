@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Superior Construction – Full Site Wireframe</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0A0A0A;--dark:#111111;--card:#181818;--border:#2A2A2A;
+  --red:#D42B2B;--red-d:#B01E1E;--white:#FFFFFF;
+  --gray:#999;--gray-l:#CCC;--light:#F5F5F5;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
+h1,h2,h3,.hero-title,.section-title,.services-hook,.svc-hero-title,
+.stat-num,.service-name,.partners-headline,.materials-title,
+.drawer-title,.cat-name,.footer-col h4,.gc-title,.svc-cta-title,.svc-stat-num,.svc-contact-num{
+  font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.8px;
+}
+.hero-title{font-weight:700;letter-spacing:1px}
+.stat-num{font-weight:700;letter-spacing:0}
+.materials-title{font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.partners-headline{font-weight:600;text-transform:uppercase;letter-spacing:2px}
+.svc-hero-title{font-weight:700;font-size:clamp(44px,5.5vw,76px);line-height:1.0;letter-spacing:1px;margin-bottom:20px}
+.svc-hero-title span{color:var(--red)}
+
+
+/* PAGES */
+.page{display:none;margin-top:-42px}
+.page.active{display:block}
+
+/* NAV */
+nav.main-nav{background:rgba(10,10,10,0.97);position:sticky;top:0;z-index:100;height:72px;display:flex;align-items:center;padding:0 60px;gap:48px;border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
+.nav-logo{display:flex;align-items:center;height:100%;text-decoration:none;flex-shrink:0}
+.nav-logo img{height:44px;width:auto;object-fit:contain;display:block}
+.nav-links{display:flex;gap:28px;list-style:none;margin-left:auto}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;letter-spacing:0.3px}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-quote{background:var(--red);color:var(--white);border:none;padding:10px 22px;border-radius:3px;font-weight:700;font-size:12px;cursor:pointer;letter-spacing:0.8px;text-transform:uppercase;transition:background 0.2s;flex-shrink:0}
+.nav-quote:hover{background:var(--red-d)}
+
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0;margin-left:auto}
+.burger span{display:block;width:100%;height:2px;background:var(--white);transition:transform 0.25s,opacity 0.25s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── TABLET (roughly iPad portrait/landscape + small laptops) ── */
+@media (max-width:1180px) and (min-width:901px){
+  nav.main-nav{padding:0 32px;gap:28px}
+  .nav-links{gap:18px}
+  .nav-links a{font-size:12.5px}
+  .nav-quote{padding:9px 18px;font-size:11px}
+}
+
+/* ── MOBILE / TOUCH NAV (phones + most tablets in portrait) ── */
+@media (max-width:900px){
+  nav.main-nav{padding:0 20px}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:72px;
+    left:0;
+    right:0;
+    max-height:calc(100vh - 72px);
+    overflow-y:auto;
+    background:rgba(10,10,10,0.98);
+    flex-direction:column;
+    gap:0;
+    margin-left:0;
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(16px);
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:16px 24px;width:100%}
+  .has-dropdown .dropdown{
+    position:static;
+    display:none;
+    background:rgba(255,255,255,0.03);
+    transform:none;
+    opacity:1;
+    box-shadow:none;
+    border:none;
+    border-radius:0;
+    min-width:0;
+  }
+  .has-dropdown.open .dropdown{display:flex;flex-direction:column;pointer-events:all}
+  .has-dropdown .dropdown a{padding:12px 40px 12px 48px}
+  .nav-quote{display:none}
+  .burger{display:flex}
+}
+
+/* ── SMALL PHONES ── */
+@media (max-width:480px){
+  nav.main-nav{padding:0 16px;height:64px}
+  .nav-logo img{height:36px}
+  .nav-links{top:64px;max-height:calc(100vh - 64px)}
+  .nav-links a{padding:14px 20px;font-size:14px}
+  .has-dropdown .dropdown a{padding:11px 20px 11px 40px}
+}
+
+/* HERO */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.35}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,43,43,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,43,43,0.04) 1px,transparent 1px);background-size:60px 60px}
+.hero-accent{position:absolute;right:-120px;top:-80px;width:700px;height:700px;background:radial-gradient(circle,rgba(212,43,43,0.12) 0%,transparent 65%);border-radius:50%}
+.hero-content{position:relative;z-index:2;padding:0 80px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px}
+.hero-line{width:40px;height:2px;background:var(--red)}
+.hero-eyebrow-text{font-size:11px;font-weight:700;color:var(--red);letter-spacing:3px;text-transform:uppercase}
+.hero-title{font-size:clamp(42px,5vw,72px);line-height:1.05;margin-bottom:24px}
+.hero-title span{color:var(--red)}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.7;max-width:600px;margin-bottom:40px;text-align:center}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-red{background:var(--red);color:var(--white);border:none;padding:14px 32px;border-radius:3px;font-weight:700;font-size:13px;cursor:pointer;letter-spacing:0.8px;text-transform:uppercase;transition:background 0.2s}
+.btn-red:hover{background:var(--red-d)}
+.btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.3);padding:14px 32px;border-radius:3px;font-weight:600;font-size:13px;cursor:pointer;letter-spacing:0.8px;text-transform:uppercase;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--white)}
+
+/* STATS */
+.stats-bar{background:var(--red);padding:0 60px;display:flex;align-items:stretch}
+.stat-item{flex:1;padding:28px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;border-right:1px solid rgba(255,255,255,0.2)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:36px;color:var(--white);line-height:1}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.75);font-weight:500;letter-spacing:0.3px;margin-top:4px}
+
+/* ============================================================
+   STATS BAR — RESPONSIVE
+   Breakpoints: 1024px (small laptop/tablet), 768px (tablet
+   portrait), 480px (phones). Purely additive.
+============================================================ */
+
+/* Small laptop / tablet landscape */
+@media (max-width:1024px){
+  .stats-bar{padding:0 40px}
+  .stat-item{padding:24px 16px}
+  .stat-num{font-size:32px}
+}
+
+/* Tablet portrait — stack into a 2-col / wrap grid so numbers
+   don't get squeezed too narrow */
+@media (max-width:768px){
+  .stats-bar{
+    flex-wrap:wrap;
+    padding:0 20px;
+  }
+  .stat-item{
+    flex:1 1 50%;
+    padding:22px 12px;
+    border-right:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+  }
+  /* 3 items: 2 up top, 1 full-width below */
+  .stat-item:nth-child(2){border-right:none}
+  .stat-item:last-child{
+    flex:1 1 100%;
+    border-bottom:none;
+  }
+  .stat-num{font-size:28px}
+  .stat-label{font-size:11px}
+}
+
+/* Phones — stack fully vertical */
+@media (max-width:480px){
+  .stats-bar{
+    flex-direction:column;
+    padding:0;
+  }
+  .stat-item{
+    flex:1 1 auto;
+    padding:20px 16px;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+  }
+  .stat-item:last-child{border-bottom:none}
+  .stat-num{font-size:26px}
+  .stat-label{font-size:11px;margin-top:2px}
+}
+
+/* SECTION SHARED */
+section{padding:88px 60px}
+.section-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.s-line{width:32px;height:2px;background:var(--red)}
+.s-tag{font-size:11px;font-weight:700;color:var(--red);letter-spacing:3px;text-transform:uppercase}
+.section-title{font-size:clamp(28px,3.5vw,44px);letter-spacing:0.8px;line-height:1.1;margin-bottom:12px}
+.section-sub{font-size:15px;color:var(--gray);line-height:1.7;max-width:580px;margin-bottom:52px}
+
+/* PARTNERS */
+.partners-section{background:var(--black);padding:112px 0 120px;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.partners-header{text-align:center;padding:0 60px;margin-bottom:64px}
+.partners-headline{font-size:clamp(32px,4vw,52px);line-height:1.05;color:var(--white)}
+.partners-headline span{color:var(--red)}
+.partners-kicker{font-size:13px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:8px}
+.marquee-wrap{position:relative;width:100%;--fade-w:80px}
+.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:var(--fade-w);z-index:2;pointer-events:none}
+.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--black),transparent)}
+.marquee-track{display:flex;gap:0;width:max-content;animation:marquee-scroll 32s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.partner-pill{display:flex;align-items:center;justify-content:center;padding:20px 48px;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0;transition:background 0.2s;cursor:default}
+.partner-pill:hover{background:rgba(255,255,255,0.03)}
+.partner-logo{height:56px;width:auto;max-width:160px;object-fit:contain}
+
+/* SERVICES */
+.services-section{position:relative;overflow:hidden;padding:100px 60px;background:#0d0c0a}
+.services-bg{
+  position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 20% 60%,rgba(160,100,30,0.10) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 20%,rgba(212,43,43,0.07) 0%,transparent 50%),
+    linear-gradient(160deg,#141008 0%,#1c1710 40%,#0c1018 100%);
+}
+.services-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.35}
+
+a.service-card{
+  text-decoration:none;
+}
+.services-inner{position:relative;z-index:2}
+.services-header{text-align:center;margin-bottom:52px}
+.services-hook{font-size:clamp(26px,3.2vw,42px);line-height:1.15;margin-bottom:14px;color:var(--white)}
+.services-hook em{color:var(--red);font-style:normal}
+.services-sub{font-size:15px;color:rgba(255,255,255,0.5);max-width:460px;margin:0 auto;line-height:1.75}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.service-card{background:rgba(255,255,255,0.055);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:44px 40px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:18px}
+.service-card::before{content:'';position:absolute;inset:0;border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,transparent 55%);pointer-events:none}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:opacity 0.3s}
+.service-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(212,43,43,0.35);transform:translateY(-5px);box-shadow:0 24px 64px rgba(0,0,0,0.45)}
+.service-card:hover::after{opacity:1}
+.service-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;opacity:0.9}
+.service-card:hover .service-icon{opacity:1}
+.service-num{font-size:11px;color:rgba(212,43,43,0.75);font-weight:700;letter-spacing:2.5px}
+.service-name{font-size:20px;line-height:1.25;color:var(--white)}
+.service-desc{font-size:14px;color:rgba(255,255,255,0.52);line-height:1.78;flex:1}
+.service-cta{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--red);letter-spacing:0.8px;text-transform:uppercase;margin-top:4px;border-bottom:1px solid rgba(212,43,43,0.3);padding-bottom:2px;width:fit-content;transition:gap 0.2s,border-color 0.2s}
+.service-cta::after{content:'→'}
+.service-card:hover .service-cta{gap:12px;border-color:var(--red)}
+.service-subpage-note{display:inline-flex;align-items:center;gap:6px;background:rgba(212,43,43,0.1);border:1px dashed rgba(212,43,43,0.4);border-radius:4px;padding:8px 14px;font-size:11px;color:var(--red);font-weight:600;margin-top:28px}
+
+/* ============================================================
+   SERVICES SECTION — RESPONSIVE
+   Breakpoints: 1024px (small laptop/tablet), 768px (tablet
+   portrait), 480px (phones). Added below the existing rules —
+   nothing above this is changed.
+============================================================ */
+
+/* Small laptop / tablet landscape */
+@media (max-width:1024px){
+  .services-section{padding:72px 40px}
+  .services-grid{gap:16px}
+  .service-card{padding:36px 32px}
+}
+
+/* Tablet portrait — this is the key fix: 2 columns is too
+   cramped once the viewport drops much below ~700px, so we
+   collapse to a single column and let cards breathe */
+@media (max-width:768px){
+  .services-section{padding:56px 28px}
+  .services-header{margin-bottom:36px}
+  .services-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+  .service-card{padding:32px 28px;gap:14px}
+  .service-icon{width:44px;height:44px}
+  .service-name{font-size:18px}
+  .service-desc{font-size:13.5px;line-height:1.7}
+}
+
+/* Phones */
+@media (max-width:480px){
+  .services-section{padding:44px 20px}
+  .services-header{margin-bottom:28px}
+  .services-hook{font-size:clamp(22px,7vw,28px)}
+  .services-sub{font-size:13px;padding:0 4px}
+  .services-grid{gap:14px}
+  .service-card{padding:28px 22px}
+  .service-icon{width:40px;height:40px}
+  .service-icon svg{width:36px;height:36px}
+  .service-name{font-size:17px}
+  .service-desc{font-size:13px;line-height:1.65}
+  .service-cta{font-size:11px}
+}
+
+/* MATERIALS */
+.materials-section{background:#F2F0EC;padding:96px 60px 80px}
+
+@media (max-width:700px){
+  .materials-section{padding:56px 20px 56px}
+}
+.materials-header{text-align:center;margin-bottom:56px}
+.materials-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.m-line{width:28px;height:2px;background:var(--red)}
+.m-tag{font-size:11px;font-weight:700;color:var(--red);letter-spacing:3px;text-transform:uppercase}
+.materials-title{font-size:clamp(38px,5vw,64px);color:var(--black);line-height:1.0;margin-bottom:12px}
+.materials-title span{color:var(--red)}
+.materials-sub{font-size:14px;color:#666;letter-spacing:0.3px}
+
+/* 2-card category grid */
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,300px));
+  gap:16px;
+  justify-content:center;
+  max-width:100%;
+}
+
+@media (max-width:700px){
+  .cat-grid{
+    grid-template-columns:1fr;
+    max-width:420px;
+    margin:0 auto;
+  }
+}
+.cat-platter{border-radius:12px;padding:32px 22px 28px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;border:2px solid transparent}
+.cat-platter::before{content:'';position:absolute;inset:0;border-radius:11px;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,0.45) 100%);z-index:1}
+.cat-platter:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.6)}
+.cat-platter.active{transform:translateY(-5px)}
+.cat-platter.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--red);z-index:3;border-radius:0 0 10px 10px}
+.cat-platter-bg{position:absolute;inset:0;border-radius:11px;background-size:cover;background-position:center;transition:transform 0.4s ease}
+.cat-platter:hover .cat-platter-bg,.cat-platter.active .cat-platter-bg{transform:scale(1.04)}
+
+/* category background gradients — Sand & Coarse only */
+.cat-sand .cat-platter-bg{background:linear-gradient(145deg,#8A9BAB 0%,#5A6470 40%,#3D4B55 100%)}
+.cat-coarse .cat-platter-bg{background:linear-gradient(145deg,#6B7078 0%,#8B8E94 40%,#4A4E54 100%)}
+
+.cat-platter-content{position:relative;z-index:2}
+.cat-count{font-size:10px;font-weight:700;color:rgba(255,255,255,0.65);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.cat-name{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;color:var(--white);line-height:1.2;letter-spacing:0.5px}
+.cat-arrow{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.cat-platter:hover .cat-arrow,.cat-platter.active .cat-arrow{color:var(--white)}
+.cat-icon{position:absolute;top:18px;right:18px;z-index:2;opacity:0.5;transition:opacity 0.2s}
+.cat-platter:hover .cat-icon,.cat-platter.active .cat-icon{opacity:0.9}
+
+.product-drawer{
+  background:var(--white);
+  border-radius:16px;
+  margin-top:16px;
+  padding:36px;
+  border:1.5px solid #E0DDD8;
+  display:none;
+  box-shadow:0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+  transform-origin:top center;
+  animation:drawerPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes drawerPop{
+  from{opacity:0;transform:scaleY(0.88) translateY(-12px)}
+  to{opacity:1;transform:scaleY(1) translateY(0)}
+}
+.product-drawer.open{display:block}
+
+/* PRODUCT CARD — image + info layout */
+.prod-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
+}
+.prod-card{
+  background:#F9F8F6;
+  border-radius:12px;
+  overflow:hidden;
+  border:1.5px solid #ECEAE5;
+  transition:all 0.22s;
+  cursor:default;
+}
+.prod-card:hover{
+  border-color:#C4B8A8;
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(0,0,0,0.10);
+}
+
+/* image zone — real <img> with graceful fallback */
+.prod-img{
+  height:160px;
+  position:relative;
+  overflow:hidden;
+  background:#3c3e44;
+}
+.prod-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.prod-img-fallback{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.45);
+  background:linear-gradient(160deg,#5e6068,#3c3e44);
+}
+
+/* info zone */
+.prod-info{
+  padding:16px 18px 18px;
+  border-top:1.5px solid #ECEAE5;
+}
+.prod-name{
+  font-family:"Oswald",sans-serif;
+  font-size:17px;
+  font-weight:600;
+  color:var(--black);
+  letter-spacing:0.5px;
+  margin-bottom:4px;
+}
+.prod-tag{
+  font-size:11px;
+  color:var(--red);
+  font-weight:700;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+}
+
+.drawer-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #ECEAE5}
+.drawer-title{font-size:20px;color:var(--black);letter-spacing:0.5px}
+
+.prod-grid .prod-card{
+  animation:cardPop 0.35s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+.prod-grid .prod-card:nth-child(1){animation-delay:0.04s}
+.prod-grid .prod-card:nth-child(2){animation-delay:0.09s}
+.prod-grid .prod-card:nth-child(3){animation-delay:0.14s}
+.prod-grid .prod-card:nth-child(4){animation-delay:0.19s}
+@keyframes cardPop{
+  from{opacity:0;transform:translateY(18px) scale(0.93)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.drawer-close{width:28px;height:28px;border-radius:50%;background:#F2F0EC;border:none;cursor:pointer;font-size:14px;color:#888;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
+.drawer-close:hover{background:#E0DDD8;color:var(--black)}
+
+/* LIGHTBOX */
+.lightbox-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.88);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+  animation:lightboxFadeIn 0.25s ease both;
+}
+.lightbox-overlay.open{
+  display:flex;
+}
+@keyframes lightboxFadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+.lightbox-img{
+  max-width:90vw;
+  max-height:85vh;
+  border-radius:8px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  object-fit:contain;
+  animation:lightboxPop 0.3s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+@keyframes lightboxPop{
+  from{opacity:0;transform:scale(0.92)}
+  to{opacity:1;transform:scale(1)}
+}
+.lightbox-close{
+  position:absolute;
+  top:20px;
+  right:24px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  border:1.5px solid rgba(255,255,255,0.3);
+  color:var(--white);
+  font-size:24px;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.2s;
+}
+.lightbox-close:hover{
+  background:rgba(255,255,255,0.25);
+  transform:rotate(90deg);
+}
+.lightbox-fallback{
+  width:min(90vw,600px);
+  height:min(70vh,450px);
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(160deg,#5e6068,#3c3e44);
+  color:rgba(255,255,255,0.55);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  animation:lightboxPop 0.3s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+.lightbox-caption{
+  position:absolute;
+  bottom:24px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-family:"Oswald",sans-serif;
+  color:var(--white);
+  font-size:13px;
+  letter-spacing:0.5px;
+  opacity:0.8;
+}
+
+/* mobile */
+@media (max-width:700px){
+  .lightbox-overlay{padding:16px}
+  .lightbox-img{max-width:94vw;max-height:80vh}
+  .lightbox-close{top:12px;right:12px;width:38px;height:38px;font-size:20px}
+   .lightbox-fallback{width:90vw;height:60vh}
+}
+
+/* PROJECTS */
+.projects-section{background:var(--dark)}
+.proj-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.proj-card{position:relative;overflow:hidden;cursor:pointer;background:var(--card);aspect-ratio:4/5}
+.proj-img-placeholder{width:100%;height:100%;min-height:200px;background:linear-gradient(135deg,#1e1e1e,#2a2a2a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.proj-img-icon{font-size:28px;opacity:0.4}
+.proj-img-label{font-size:9px;color:var(--gray);letter-spacing:1px;text-transform:uppercase}
+.proj-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.9) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.proj-name{font-size:12px;font-weight:700;color:var(--white);line-height:1.4}
+.proj-card:hover .proj-img-placeholder{background:linear-gradient(135deg,#2e1515,#1e1e1e)}
+
+/* QUOTE */
+.quote-section{background:var(--red);padding:80px 60px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.quote-text h2{font-size:clamp(28px,3vw,40px);color:var(--white);margin-bottom:8px}
+.quote-text p{font-size:15px;color:rgba(255,255,255,0.75);max-width:500px;line-height:1.6}
+.btn-white{background:var(--white);color:var(--red);border:none;padding:16px 40px;border-radius:3px;font-weight:800;font-size:14px;cursor:pointer;letter-spacing:0.8px;text-transform:uppercase;transition:all 0.2s;flex-shrink:0}
+.btn-white:hover{background:#f0f0f0}
+
+/* CONTACT */
+.contact-section{background:var(--black);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:350px}
+.contact-info{padding:72px 60px}
+.contact-item{display:flex;gap:16px;margin-bottom:32px;align-items:flex-start}
+.contact-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.contact-label{font-size:11px;font-weight:700;color:var(--red);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.contact-value{font-size:14px;color:var(--gray-l);line-height:1.6}
+.contact-map{background:#1a1a1a;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--border)}
+
+.contact-map{position:relative;background:#1a1a1a;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--border);overflow:hidden}
+
+.map-pin-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(212,43,43,0.95);
+  color:#fff;
+  font-family:"Inter",sans-serif;
+  font-size:12px;
+  font-weight:600;
+  padding:8px 14px;
+  border-radius:20px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.35);
+  pointer-events:none;
+  z-index:2;
+}
+
+/* ============================================================
+   CONTACT SECTION — RESPONSIVE
+   Breakpoints: 1024px (small laptop/tablet), 768px (tablet
+   portrait), 480px (phones). Purely additive.
+============================================================ */
+
+/* Small laptop / tablet landscape */
+@media (max-width:1024px){
+  .contact-info{padding:56px 40px}
+  .contact-item{margin-bottom:26px}
+}
+
+/* Tablet portrait — stack info above map instead of side-by-side */
+@media (max-width:768px){
+  .contact-section{grid-template-columns:1fr}
+  .contact-info{padding:48px 28px}
+  .contact-map{
+    border-left:none;
+    border-top:1px solid var(--border);
+    min-height:280px;
+  }
+  h2[style*="font-size:42px"]{font-size:32px !important;margin-bottom:24px !important}
+}
+
+/* Phones */
+@media (max-width:480px){
+  .contact-info{padding:36px 20px}
+  .contact-item{gap:12px;margin-bottom:22px}
+  .contact-icon{width:34px;height:34px}
+  .contact-icon svg{width:14px;height:14px}
+  .contact-label{font-size:10px}
+  .contact-value{font-size:13px;line-height:1.55}
+  .contact-map{min-height:240px}
+  h2[style*="font-size:42px"]{font-size:26px !important;margin-bottom:20px !important}
+}
+
+/* FOOTER */
+footer.main-footer{background:#050505;padding:48px 60px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:4fr 1fr 1.5fr 1.5fr;gap:40px;margin-bottom:40px}
+.footer-desc{font-size:13px;color:var(--gray);line-height:2;max-width:480px;margin-top:16px}
+.footer-col h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13px;color:var(--gray);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#555}
+.footer-bottom span{color:var(--red)}
+.footer-top .nav-logo{display:inline-flex;margin-bottom:0}
+.footer-top .nav-logo img{height:44px;width:auto;object-fit:contain;display:block}
+.footer-brand{display:flex;flex-direction:column}
+.footer-logo{display:inline-flex;margin-bottom:0}
+.footer-logo img{height:44px;width:auto;object-fit:contain;display:block}
+
+@media (max-width:900px){
+  footer.main-footer{padding:40px 24px}
+  .footer-top{grid-template-columns:repeat(2,1fr);gap:32px 24px;margin-bottom:32px}
+}
+
+/* ============================================================
+   FOOTER — RESPONSIVE
+   Breakpoints: 1024px (small laptop/tablet), 768px (tablet
+   portrait — below your existing 900px), 480px (phones).
+   Purely additive.
+============================================================ */
+
+/* Small laptop / tablet landscape */
+@media (max-width:1024px){
+  footer.main-footer{padding:44px 32px}
+  .footer-top{gap:32px}
+}
+
+/* Tablet portrait — your existing 900px query already collapses
+   to 2 columns; this narrows further into a single column */
+@media (max-width:768px){
+  .footer-top{
+    grid-template-columns:1fr;
+    gap:32px;
+    margin-bottom:28px;
+  }
+  .footer-desc{max-width:100%}
+  .footer-bottom{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+}
+
+/* Phones */
+@media (max-width:480px){
+  footer.main-footer{padding:32px 20px}
+  .footer-top{gap:28px;margin-bottom:24px}
+  .footer-desc{font-size:12px;line-height:1.8;margin-top:12px}
+  .footer-col h4{font-size:10px;margin-bottom:12px}
+  .footer-col ul{gap:8px}
+  .footer-col ul li a{font-size:12px}
+  .footer-top .nav-logo img{height:36px}
+  .footer-bottom{font-size:11px;padding-top:20px}
+}
+
+/* ══ SERVICE SUBPAGE SYSTEM ══ */
+.service-selector{background:var(--black);padding:0 60px;border-bottom:1px solid var(--border);display:flex;gap:0;align-items:center;overflow-x:auto}
+.sel-label{font-size:11px;color:var(--gray);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-right:20px;white-space:nowrap;flex-shrink:0}
+.sel-btn{padding:16px 24px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
+.sel-btn:hover{color:var(--white)}
+.sel-btn.active{color:var(--white);border-bottom-color:var(--red)}
+
+/* Service hero */
+.svc-hero{position:relative;min-height:56vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--border)}
+.svc-hero-inner{position:relative;z-index:2;padding:72px 60px 60px;width:100%;max-width:1100px}
+.svc-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+
+/* Stat glass pills */
+.svc-stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.svc-stat-glass{background:rgba(255,255,255,0.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:18px 24px;min-width:130px;transition:background 0.2s}
+.svc-stat-glass:hover{background:rgba(255,255,255,0.11)}
+.svc-stat-num{font-size:26px;color:var(--white);letter-spacing:0.5px;line-height:1;margin-bottom:4px}
+.svc-stat-lbl{font-size:11px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.3px}
+
+/* Body */
+.svc-body{background:#F2F0EC}
+
+/* Sections */
+.svc-section{padding:64px 60px}
+.svc-section.dark-bg{background:var(--black)}
+.svc-section-label{font-size:11px;font-weight:700;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:10px}
+.svc-section-label::before{content:'';display:block;width:28px;height:2px;background:var(--red)}
+
+/* Glass card grid */
+.glass-grid{display:grid;gap:16px}
+.glass-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.glass-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.glass-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.glass-grid.cols-4{grid-template-columns:repeat(2,1fr)}.glass-grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+
+/* Glass card */
+.gc{border-radius:14px;transition:all 0.25s;position:relative;overflow:hidden;background:rgba(255,255,255,0.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1.5px solid rgba(255,255,255,0.95);box-shadow:0 4px 24px rgba(0,0,0,0.06);padding:28px}
+.gc:hover{background:rgba(255,255,255,0.92);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.10)}
+.gc-icon{width:48px;height:48px;background:rgba(212,43,43,0.08);border:1px solid rgba(212,43,43,0.18);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:16px;font-size:22px}
+.gc h3{font-size:19px;color:var(--black);margin-bottom:10px}
+.gc p{font-size:13px;color:#555;line-height:1.75;margin-bottom:12px}
+.gc ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.gc ul li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#444;line-height:1.5}
+.gc ul li::before{content:'▸';color:var(--red);font-size:11px;flex-shrink:0;margin-top:1px}
+
+/* Material gc card */
+.gc.mat{padding:0}
+.gc.mat .mat-top{height:110px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.gc.mat .mat-info{padding:12px 16px 16px}
+.gc.mat h3{font-size:15px;margin-bottom:4px}
+.gc.mat p{font-size:12px;color:#777;margin-bottom:0}
+
+/* Project gc card */
+.gc.proj{padding:0;cursor:pointer}
+.gc.proj .proj-top{height:130px;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(135deg,#e0e0e0,#c8c8c8);opacity:0.8}
+.gc.proj .proj-info{padding:16px}
+.gc.proj h3{font-size:15px;margin-bottom:4px}
+.gc.proj p{font-size:12px;color:#777;margin-bottom:0}
+
+/* CTA band */
+.svc-cta-band{padding:60px;background:var(--black)}
+.svc-cta-glass{background:var(--red);border-radius:16px;padding:52px 56px;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;position:relative;overflow:hidden}
+.svc-cta-glass::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.svc-cta-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.svc-cta-title{font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--white);letter-spacing:1px;margin-bottom:10px}
+.svc-cta-sub{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.7;max-width:400px}
+.svc-cta-contacts{display:flex;flex-direction:column;gap:20px;flex-shrink:0;min-width:260px}
+.svc-contact-item{display:flex;align-items:flex-start;gap:14px}
+.svc-contact-icon{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.svc-contact-label{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.svc-contact-num{font-size:22px;color:var(--white);letter-spacing:0.5px;line-height:1.3}
+
+/* CTA */
+.cta-section{padding:60px;background:var(--black)}
+.cta-glass{background:var(--red);border-radius:16px;padding:52px 56px;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-glass::before{content:"";position:absolute;right:-60px;top:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.cta-lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.cta-title{font-family:"Oswald",sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--white);letter-spacing:1px;margin-bottom:10px}
+.cta-sub{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.7;max-width:400px}
+.cta-contacts{display:flex;flex-direction:column;gap:20px;flex-shrink:0;min-width:260px}
+.contact-item{display:flex;align-items:flex-start;gap:14px}
+.contact-item:hover .contact-value{text-decoration:underline}
+.contact-icon-wrap{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.contact-num{font-family:"Oswald",sans-serif;font-size:22px;color:var(--white);letter-spacing:0.5px;line-height:1.3}
+
+
+/* Breadcrumb */
+.subpage-breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray);margin-bottom:20px;position:relative;z-index:2}
+.subpage-breadcrumb a{color:var(--gray);text-decoration:none}
+.subpage-breadcrumb a:hover{color:var(--white)}
+.subpage-breadcrumb .sep{color:#444}
+.subpage-breadcrumb .current{color:var(--red)}
+.svc-hero-sub{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.75;max-width:600px}
+
+/* SITE MAP */
+.flow-page-wrap{background:var(--dark);min-height:calc(100vh - 42px);padding:60px}
+.flow-page-wrap h2{font-size:28px;margin-bottom:8px;font-family:'Oswald',sans-serif;letter-spacing:0.8px}
+.site-map{display:flex;flex-direction:column;gap:40px}
+.sm-row{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.sm-page{background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:20px 24px;min-width:160px;position:relative}
+.sm-page.main-page{border-color:var(--red)}
+.sm-page.sub-page{border-color:#444;background:#161616}
+.sm-page.cta-page{border-color:var(--red);background:rgba(212,43,43,0.1)}
+.sm-title{font-size:14px;font-weight:800;color:var(--white);margin-bottom:4px}
+.sm-sub{font-size:11px;color:var(--gray)}
+.sm-badge{position:absolute;top:-8px;left:12px;background:var(--red);color:var(--white);font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:0.5px;text-transform:uppercase}
+.sm-badge.blue{background:#4A7FCC}
+.sm-arrow-right{font-size:20px;color:#444;margin-top:24px;flex-shrink:0}
+.wf-note{display:inline-flex;align-items:flex-start;gap:8px;background:rgba(100,130,255,0.08);border:1px dashed rgba(100,130,255,0.35);border-radius:4px;padding:10px 14px;font-size:11px;color:#8AABFF;line-height:1.5}
+.wf-note strong{color:#A0BFFF}
+
+
+
+/* ── ABOUT PAGE ── */
+.about-hero{
+  position:relative;min-height:55vh;
+  background:linear-gradient(135deg,#0a0a0a 0%,#1a0505 60%,#0a0a0a 100%);
+  display:flex;align-items:flex-end;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.about-hero-inner{position:relative;z-index:2;padding:80px 60px 60px;width:100%}
+.about-hero-title{font-size:clamp(44px,5vw,72px);font-weight:700;line-height:1.0;letter-spacing:1px;margin-bottom:16px}
+.about-hero-title span{color:var(--red)}
+.about-hero-sub{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.8;max-width:680px}
+
+/* Commitment */
+.about-commitment{background:var(--black);padding:80px 60px;text-align:center}
+.commitment-headline{font-size:clamp(20px,2.5vw,30px);font-weight:700;color:var(--white);max-width:760px;margin:0 auto 24px;line-height:1.4;letter-spacing:0.5px}
+.commitment-body{font-size:15px;color:rgba(255,255,255,0.55);max-width:720px;margin:0 auto;line-height:1.85}
+
+/* Core Values */
+.core-values{background:#F2F0EC;padding:80px 60px}
+.cv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #DDD;margin-top:40px}
+.cv-card{padding:40px 36px;border-right:1px solid #DDD;border-bottom:1px solid #DDD;background:var(--white);transition:background 0.2s;position:relative}
+.cv-card:nth-child(3n){border-right:none}
+.cv-card:nth-child(4),.cv-card:nth-child(5),.cv-card:nth-child(6){border-bottom:none}
+.cv-card:hover{background:#FAFAFA}
+.cv-num{font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:rgba(0,0,0,0.06);line-height:1;margin-bottom:20px;letter-spacing:-1px}
+.cv-name{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;color:var(--black);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.cv-name::before{content:'';display:block;width:20px;height:2px;background:var(--red);flex-shrink:0}
+.cv-desc{font-size:14px;color:#666;line-height:1.7}
+
+/* Company Profile */
+.company-profile{background:var(--dark);padding:80px 60px}
+.cp-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.cp-text h3{font-size:clamp(28px,3vw,42px);font-weight:700;color:var(--white);margin-bottom:24px;letter-spacing:0.5px}
+.cp-text p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:16px}
+.cp-stats{display:flex;flex-direction:column;gap:16px}
+.cp-stat-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px 28px;display:flex;align-items:center;gap:20px;transition:background 0.2s}
+.cp-stat-card:hover{background:rgba(255,255,255,0.08)}
+.cp-stat-icon{width:52px;height:52px;background:rgba(212,43,43,0.12);border:1px solid rgba(212,43,43,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.cp-stat-num{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:var(--white);line-height:1;margin-bottom:3px}
+.cp-stat-lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:2px;text-transform:uppercase}
+
+
+/* ── ACCORDION PROJECTS ── */
+.proj-accordion-wrap{
+  display:flex;
+  gap:12px;
+  height:620px;
+  align-items:stretch;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding-bottom:12px;
+  scrollbar-width:none;
+  cursor:grab;
+}
+.proj-accordion-wrap::-webkit-scrollbar{display:none}
+.proj-accordion-wrap:active{cursor:grabbing}
+.proj-pill{
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  flex:0 0 88px;
+  min-width:88px;
+  transition:flex 0.65s cubic-bezier(0.77,0,0.18,1),
+             min-width 0.65s cubic-bezier(0.77,0,0.18,1);
+  background:#111;
+}
+.proj-pill.open{
+  flex:0 0 360px;
+  min-width:360px;
+}
+/* photo bg */
+.proj-pill-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  background-size:cover;background-position:center;
+  opacity:0.42;
+  transition:opacity 0.5s ease, transform 0.6s ease;
+  transform:scale(1.06);
+}
+.proj-pill.open .proj-pill-bg{opacity:1;transform:scale(1)}
+/* gradient overlay */
+.proj-pill-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.90) 0%,
+    rgba(0,0,0,0.30) 50%,
+    rgba(0,0,0,0.04) 100%
+  );
+  transition:background 0.4s;
+}
+.proj-pill.open .proj-pill-overlay{
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.15) 55%,
+    transparent 100%
+  );
+}
+/* collapsed: rotated arrow in top-right */
+.proj-pill-arrow{
+  position:absolute;top:16px;right:16px;z-index:3;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.22);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.3s, background 0.2s;
+  transform:rotate(45deg);
+}
+.proj-pill-arrow svg{display:block}
+.proj-pill.open .proj-pill-arrow{
+  opacity:0;pointer-events:none;
+}
+/* bottom content — hidden when collapsed */
+.proj-pill-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:26px 24px 28px;
+  z-index:2;
+  opacity:0;transform:translateY(10px);
+  transition:opacity 0.35s ease 0.18s, transform 0.35s ease 0.18s;
+  pointer-events:none;
+}
+.proj-pill.open .proj-pill-content{
+  opacity:1;transform:translateY(0);pointer-events:all;
+}
+.proj-pill-type{
+  font-size:9px;font-weight:700;color:var(--red);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.proj-pill-name{
+  font-family:'Oswald',sans-serif;
+  font-size:22px;font-weight:700;color:var(--white);
+  line-height:1.2;letter-spacing:0.3px;
+  margin-bottom:8px;
+  white-space:normal;
+}
+.proj-pill-loc{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:rgba(255,255,255,0.65);font-weight:500;
+}
+.proj-pill-loc svg{flex-shrink:0;opacity:0.7}
+
+/* Card base — collapsed */
+.proj-card-new{
+  width:200px;
+  height:440px;
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  flex-shrink:0;
+  background:#111;
+  transition:
+    width 0.55s cubic-bezier(0.77,0,0.18,1),
+    box-shadow 0.4s ease;
+}
+/* Expanded state */
+.proj-card-new.pcn-open{
+  width:380px;
+  box-shadow:0 32px 72px rgba(0,0,0,0.6);
+}
+
+/* Photo bg */
+.pcn-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0.4;
+  transition:opacity 0.5s ease, transform 0.55s ease;
+  transform:scale(1.06);
+}
+.proj-card-new.pcn-open .pcn-bg{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Gradient overlay — strong when collapsed, lighter when open */
+.pcn-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.80) 0%,
+    rgba(0,0,0,0.25) 55%,
+    transparent 100%
+  );
+  transition:opacity 0.4s ease;
+}
+.proj-card-new.pcn-open .pcn-overlay{
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.70) 0%,
+    rgba(0,0,0,0.08) 45%,
+    transparent 100%
+  );
+}
+/* ============================================================
+   PROJECTS ACCORDION — RESPONSIVE
+   Breakpoints: 1024px (small laptop/tablet), 768px (tablet
+   portrait), 480px (phones). Purely additive — nothing above
+   this is changed.
+============================================================ */
+
+/* Small laptop / tablet landscape */
+@media (max-width:1024px){
+  .projects-section{padding:64px 40px !important}
+  .proj-accordion-wrap{height:480px;gap:10px}
+  .proj-pill{flex:0 0 76px;min-width:76px}
+  .proj-pill.open{flex:0 0 300px;min-width:300px}
+  .proj-pill-name{font-size:19px}
+}
+
+/* Tablet portrait */
+@media (max-width:768px){
+  .projects-section{padding:48px 24px !important}
+  .proj-accordion-wrap{height:420px;gap:8px}
+  .proj-pill{flex:0 0 64px;min-width:64px;border-radius:18px}
+  .proj-pill.open{flex:0 0 250px;min-width:250px}
+  .proj-pill-content{padding:20px 18px 22px}
+  .proj-pill-type{font-size:8px;margin-bottom:6px}
+  .proj-pill-name{font-size:17px;margin-bottom:6px}
+  .proj-pill-loc{font-size:11px}
+  .proj-pill-arrow{width:28px;height:28px;top:12px;right:12px}
+}
+
+/* Phones */
+@media (max-width:480px){
+  .projects-section{padding:36px 16px !important}
+  .proj-accordion-wrap{height:340px;gap:6px;padding-bottom:8px}
+  .proj-pill{flex:0 0 48px;min-width:48px;border-radius:14px}
+  .proj-pill.open{flex:0 0 200px;min-width:200px}
+  .proj-pill-content{padding:16px 14px 18px}
+  .proj-pill-type{font-size:8px;margin-bottom:5px}
+  .proj-pill-name{font-size:15px;line-height:1.3;margin-bottom:5px}
+  .proj-pill-loc{font-size:10px;gap:4px}
+  .proj-pill-loc svg{width:10px;height:10px}
+  .proj-pill-arrow{width:24px;height:24px;top:10px;right:10px}
+  .proj-pill-arrow svg{width:11px;height:11px}
+}
+
+/* Bottom content */
+.pcn-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:24px 24px 28px;
+  z-index:2;
+}
+.pcn-tag{
+  font-size:9px;font-weight:700;color:var(--red);
+  letter-spacing:2.5px;text-transform:uppercase;
+  margin-bottom:8px;
+  opacity:0;transform:translateY(8px);
+  transition:opacity 0.35s ease 0.15s, transform 0.35s ease 0.15s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.proj-card-new.pcn-open .pcn-tag{opacity:1;transform:translateY(0)}
+.pcn-name{
+  font-family:'Oswald',sans-serif;
+  font-size:20px;font-weight:700;color:var(--white);
+  line-height:1.25;letter-spacing:0.3px;margin-bottom:0;
+  /* always visible but truncated when collapsed */
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:white-space 0.1s ease 0.3s;
+}
+.proj-card-new.pcn-open .pcn-name{
+  white-space:normal;
+  overflow:visible;
+}
+.pcn-loc{
+  display:flex;align-items:center;gap:5px;
+  font-size:11px;color:rgba(255,255,255,0.6);font-weight:500;
+  margin-top:7px;
+  opacity:0;transform:translateY(8px);
+  transition:opacity 0.35s ease 0.2s, transform 0.35s ease 0.2s;
+}
+.proj-card-new.pcn-open .pcn-loc{opacity:1;transform:translateY(0)}
+.pcn-loc::before{content:'—';font-size:10px;opacity:0.5}
+
+/* ── DROPDOWN NAV ── */
+.nav-links li{position:relative}
+.nav-links a.has-drop{display:flex;align-items:center;gap:5px}
+.nav-links a.has-drop::after{content:'▾';font-size:10px;opacity:0.6;transition:transform 0.2s}
+.nav-links li:hover > a.has-drop::after{transform:rotate(-180deg)}
+.dropdown{
+  position:absolute;top:100%;left:50%;
+  transform:translateX(-50%) translateY(4px);
+  background:rgba(10,10,10,0.98);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  min-width:248px;
+  padding:6px 0;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.15s ease,transform 0.15s ease;
+  z-index:9998;
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+/* stay open while hovering the li OR the dropdown itself — desktop only */
+@media (min-width:901px){
+  .nav-links li:hover .dropdown,
+  .nav-links li .dropdown:hover,
+  .nav-links li.drop-open .dropdown{
+    opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);
+  }
+}
+/* bridge gap between link and dropdown so cursor doesn't fall through */
+.drop-icon-svg{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.dropdown::before{
+  content:'';position:absolute;top:-8px;left:0;right:0;height:8px;
+}
+.dropdown a{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 18px;
+  font-size:12px;font-weight:600;color:rgba(255,255,255,0.65);
+  text-decoration:none;transition:all 0.15s;
+  letter-spacing:0.3px;
+}
+.dropdown a:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.dropdown a .drop-icon{font-size:14px;flex-shrink:0;opacity:0.7}
+.dropdown-divider{height:1px;background:var(--border);margin:6px 0}
+
+/* ---- 480px and below: phones ---- */
+@media (max-width:480px){
+  nav.main-nav{height:64px;padding:0 16px}
+  .nav-logo img{height:34px}
+
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════
+     HOMEPAGE
+══════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <nav class="main-nav">
+<a class="nav-logo" href="index.html" onclick="showPage('home')">
+  <img src="img/logo.png" alt="SCDC Superior Construction and Development Corp">
+</a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active" onclick="showPage('home')">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="has-dropdown">
+        <a href="#" class="has-drop">Services</a>
+        <div class="dropdown">
+          <a href="svc/service-quarry.html" onclick="closeDrop(event);showPage('subpage');switchSvcById('svc-quarry')"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 8l-4 4-2-2"/><path d="M20 4L8.5 15.5 4 11"/><circle cx="12" cy="12" r="10"/></svg></span>Quarry Operations</a>
+          <a href="svc/service-crusher.html" onclick="closeDrop(event);showPage('subpage');switchSvcById('svc-crusher')"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 20V10l5-5v5l5-5v5l5-5v10z"/><path d="M2 20h20"/><line x1="14" y1="14" x2="14" y2="20"/></svg></span>Crusher Plant Operations</a>
+          <a href="svc/service-equipment.html" onclick="closeDrop(event);showPage('subpage');switchSvcById('svc-equipment')"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 17H4a2 2 0 0 1-2-2V5h12v5"/><path d="M14 9l3-3 3 3"/><path d="M17 6v9"/><rect x="13" y="13" width="8" height="6" rx="1"/><circle cx="6" cy="17" r="2"/><circle cx="20" cy="19" r="2"/></svg></span>Heavy Equipment Support</a>
+          <a href="svc/service-deliver.html" onclick="closeDrop(event);showPage('subpage');switchSvcById('svc-deliver')"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>Source & Deliver</a>
+        </div>
+      </li>
+      <li><a href="#materials" onclick="showPage('home');setTimeout(function(){document.getElementById('materials').scrollIntoView({behavior:'smooth'})},80)">Products</a></li>
+      <li><a href="#projects" onclick="showPage('home');setTimeout(function(){document.getElementById('projects').scrollIntoView({behavior:'smooth'})},80)">Projects</a></li>
+    </ul>
+    <button class="nav-quote" onclick="showPage('home');setTimeout(function(){document.getElementById('quote').scrollIntoView({behavior:'smooth'})},80)">Get a Quote</button>
+     <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="img/HEADER.jpg" alt="" class="hero-bg-img">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-accent"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><div class="hero-line"></div><span class="hero-eyebrow-text">SUPERIOR CONSTRUCTION & DEVELOPMENT CORPORATION (SCDC)</span></div>
+      <h1 class="hero-title">Built on Rock.<br/>Delivered with <span>Precision.</span></h1>
+      <p class="hero-sub">Superior Construction supplies premium quarry aggregates, crusher plant products, and heavy equipment support for major infrastructure projects across Luzon and Metro Manila.</p>
+      <div class="hero-actions">
+        <button class="btn-red" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Our Services</button>
+        <button class="btn-ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Our Projects</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">262 Ha</div><div class="stat-label">Total Land Area</div></div>
+    <div class="stat-item"><div class="stat-num">10,977</div><div class="stat-label">Truck Loads / Trips Delivered</div></div>
+    <div class="stat-item"><div class="stat-num">32+</div><div class="stat-label">Projects & Clients Served</div></div>
+  </div>
+
+  <!-- PARTNERS -->
+  <div class="partners-section">
+    <div class="partners-header">
+      <div class="section-eyebrow" style="justify-content:center;margin-bottom:12px"><div class="s-line"></div><span class="s-tag">Built on Trust</span><div class="s-line"></div></div>
+      <div class="partners-headline">The Names That <span>Rely on Us.</span></div>
+      <div class="partners-kicker">Philippines' leading contractors · infrastructure builders · energy developers</div>
+    </div>
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/staclara.png" alt="Sta. Clara International Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/powerchina.jpg" alt="PowerChina Philippines Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/genesis.jpg" alt="Genesis Prime Construction & Dev."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/PRIME-METRO.png" alt="Prime Metro BMD Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/nono.jpg" alt="Nono Construction Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/magnificon.jpg" alt="Magnificon Inc."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/TCPI.jpg" alt="Times Ceramics Phils Inc."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/oktopower.jpg" alt="Oktopower Inc."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/staclara.png" alt="Sta. Clara International Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/powerchina.jpg" alt="PowerChina Philippines Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/genesis.jpg" alt="Genesis Prime Construction & Dev."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/PRIME-METRO.png" alt="Prime Metro BMD Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/nono.jpg" alt="Nono Construction Corp."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/magnificon.jpg" alt="Magnificon Inc."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/TCPI.jpg" alt="Times Ceramics Phils Inc."></div>
+      <div class="partner-pill"><img class="partner-logo" src="img/partners/oktopower.jpg" alt="Oktopower Inc."></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-bg" ></div>
+    <img src="img/bg.jpg" alt="" class="services-bg-img">
+    <div class="services-inner">
+      <div class="services-header">
+        <div class="section-eyebrow" style="justify-content:center"><div class="s-line"></div><span class="s-tag">Our Services</span><div class="s-line"></div></div>
+        <h2 class="services-hook">The Foundation Behind<br/>Every <em>Major Project.</em></h2>
+        <p class="services-sub">End-to-end quarry operations, crushing, equipment, and delivery — all under one roof.</p>
+      </div>
+  <div class="services-grid">
+  <a href="svc/service-quarry.html" class="service-card">
+    <div class="service-icon"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="20.5" stroke="white" stroke-width="1.4" stroke-opacity="0.25"/><path d="M14 30L22 22M22 22L27 14C28.5 11.5 32 11 33 12C34 13 33.5 16.5 31 18L22 22Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 30L17 33" stroke="white" stroke-width="1.6" stroke-linecap="round"/><path d="M10 35h8M13 32h5" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+    <div class="service-num">01</div>
+    <div class="service-name">Quarry Operations</div>
+    <div class="service-desc">Efficient extraction and processing of premium aggregates from our 22-hectare licensed quarry in Sto. Tomas, Batangas.</div>
+    <div class="service-cta">Learn More</div>
+  </a>
+      <a href="svc/service-crusher.html" class="service-card">
+    <div class="service-icon"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="20.5" stroke="white" stroke-width="1.4" stroke-opacity="0.25"/><path d="M13 10h18l-4 10H17L13 10Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M17 20l-3 10h12l-3-10" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M23 30l5 4" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="28" cy="34" r="1.5" stroke="white" stroke-width="1.3"/></svg></div>
+    <div class="service-num">02</div>
+    <div class="service-name">Crusher Plant Operations</div>
+    <div class="service-desc">Modern crushing and screening technology producing consistent, specification-grade materials for every project requirement.</div>
+    <div class="service-cta">Learn More</div>
+  </a>
+     <a href="svc/service-equipment.html" class="service-card">
+    <div class="service-icon"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="20.5" stroke="white" stroke-width="1.4" stroke-opacity="0.25"/><path d="M10 32h24" stroke="white" stroke-width="1.5" stroke-linecap="round"/><rect x="22" y="18" width="9" height="8" rx="1.5" stroke="white" stroke-width="1.4"/><path d="M26 18L20 12L15 16L18 22" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22l-3 4h6l1-4z" stroke="white" stroke-width="1.3" stroke-linejoin="round"/><circle cx="15" cy="32" r="2.5" stroke="white" stroke-width="1.3"/><circle cx="29" cy="32" r="2.5" stroke="white" stroke-width="1.3"/></svg></div>
+    <div class="service-num">03</div>
+    <div class="service-name">Heavy Equipment Support</div>
+    <div class="service-desc">A reliable fleet of heavy machinery for construction sites, quarry operations, and large-scale earthmoving projects.</div>
+    <div class="service-cta">Learn More</div>
+  </a>
+         <a href="svc/service-deliver.html" class="service-card">
+    <div class="service-icon"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="20.5" stroke="white" stroke-width="1.4" stroke-opacity="0.25"/><path d="M8 28h28v3H8z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M28 28V20h4l4 8" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 28V22h20v6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 22l4-6h12l4 6" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="31" r="3" stroke="white" stroke-width="1.4"/><circle cx="30" cy="31" r="3" stroke="white" stroke-width="1.4"/></svg></div>
+    <div class="service-num">04</div>
+    <div class="service-name">Source & Deliver</div>
+    <div class="service-desc">Timely, high-volume bulk delivery throughout Luzon and Metro Manila. We bring the quarry directly to your jobsite.</div>
+    <div class="service-cta">Learn More</div>
+  </a>
+      </div>
+        </div>
+  </section>
+
+  <!-- MATERIALS -->
+<section class="materials-section" id="materials">
+
+  <div class="materials-header">
+    <div class="materials-eyebrow">
+      <div class="m-line"></div>
+      <span class="m-tag">Materials</span>
+      <div class="m-line"></div>
+    </div>
+    <h2 class="materials-title">Our <span>Products</span></h2>
+    <p class="materials-sub">From fine sand to heavy rock, SCDC's crusher plant produces a full range of construction-grade aggregates.</p>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-platter cat-sand" onclick="toggleDrawer('sand',this)">
+      <div class="cat-platter-bg"></div>
+      <svg class="cat-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C8 8 5 12 5 15a7 7 0 0 0 14 0c0-3-3-7-7-13z"/></svg>
+      <div class="cat-platter-content">
+        <div class="cat-count">2 Products</div>
+        <div class="cat-name">Sand</div>
+        <div class="cat-arrow">Browse &#8594;</div>
+      </div>
+    </div>
+
+    <div class="cat-platter cat-coarse" onclick="toggleDrawer('coarse',this)">
+      <div class="cat-platter-bg"></div>
+      <svg class="cat-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      <div class="cat-platter-content">
+        <div class="cat-count">9 Products</div>
+        <div class="cat-name">Coarse</div>
+        <div class="cat-arrow">Browse &#8594;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product drawers -->
+  <div id="drawer-sand" class="product-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Sand</div>
+      <button class="drawer-close" onclick="closeDrawer('sand')">✕</button>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="prod-img" >
+          <img src="img/sand-1-crusher.jpg" alt="Sand 1 Crusher"
+         onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Sand 1 Crusher</div>
+          <div class="prod-tag">Fine Aggregate &middot; Concrete &amp; Mortar</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="img/sand-1-sand-maker.jpg" alt="Sand 1 Sand Maker"
+         onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Sand 1 Sand Maker</div>
+          <div class="prod-tag">Manufactured Sand &middot; Concrete &amp; Masonry</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="drawer-coarse" class="product-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Coarse</div>
+      <button class="drawer-close" onclick="closeDrawer('coarse')">✕</button>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/gravel-3-8.jpg" alt="Gravel 3/8"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Gravel 3/8</div>
+          <div class="prod-tag">Fine Aggregate &middot; Road &amp; Concrete</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/gravel-3-4.jpg" alt="Gravel 3/4"
+         onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Gravel 3/4</div>
+          <div class="prod-tag">Coarse Aggregate &middot; Road &amp; Concrete</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/applesize.jpg" alt="Applesize"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Applesize</div>
+          <div class="prod-tag">Medium Aggregate &middot; Drainage &amp; Filtration</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/armour.jpg" alt="Armour"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Armour</div>
+          <div class="prod-tag">Heavy Rock &middot; Riprap &amp; Slope Protection</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/boulders.jpg" alt="Boulders"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Boulders</div>
+          <div class="prod-tag">Large Rock &middot; Retaining &amp; Breakwater</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/gravel-1.jpg" alt="Gravel 1"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Gravel 1</div>
+          <div class="prod-tag">Coarse Aggregate &middot; Structural Fill</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/premium-base-course.jpg" alt="Premium Base Course"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Premium Base Course</div>
+          <div class="prod-tag">Road Sub-base &middot; DPWH Spec</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/mixed.jpg" alt="Mixed"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Mixed</div>
+          <div class="prod-tag">General Fill &middot; Earthworks</div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="images/products/backfilling-materials.jpg" alt="Backfilling Materials"
+               onerror="this.dataset.broken='true'; this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="prod-img-fallback" style="display:none">Photo Placeholder</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Backfilling Materials</div>
+          <div class="prod-tag">Excavation Fill &middot; Site Works</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightboxOnOverlay(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="">
+  <div id="lightbox-fallback" class="lightbox-fallback" style="display:none">
+    <span id="lightbox-fallback-text">Photo Placeholder</span>
+  </div>
+  <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
+</section>
+
+    <!-- PROJECTS -->
+  <section class="projects-section" id="projects" style="padding:88px 60px">
+    <div class="section-eyebrow"><div class="s-line"></div><span class="s-tag">Track Record</span></div>
+    <h2 class="section-title">Ongoing & Completed Projects</h2>
+    <p class="section-sub" style="margin-bottom:40px">From toll roads to reclamation — our aggregates are behind the Philippines' most iconic infrastructure.</p>
+    <div class="proj-accordion-wrap" id="projAccordion">
+      
+      <div class="proj-pill open" onclick="openPill(this)">
+       <img src="img/proj/00.jpg" alt="" class="proj-pill-bg">
+       <div class="proj-pill-tint" style="background:#FF3B3B"></div> 
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Reclamation</div>
+          <div class="proj-pill-name">SM Pasay Reclamation / SM Smart City Project</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Pasay City, Metro Manila
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+       <img src="img/proj/02.jpg" alt="" class="proj-pill-bg">
+       <div class="proj-pill-tint" style="background:#E93434"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Mixed-use Development</div>
+          <div class="proj-pill-name">Evo City</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Kawit, Cavite
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/03.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#D42E2E"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Expressway</div>
+          <div class="proj-pill-name">CALAX Cavite Segment</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cavite Province
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/04.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#BE2727"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Toll Road</div>
+          <div class="proj-pill-name">SLEX Toll Road 4 – Xwell Testing Services</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            South Luzon Expressway
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/05.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#A92121"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Interchange</div>
+          <div class="proj-pill-name">CALAX – Silang Aguinaldo Interchange Service</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Silang, Cavite
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/06.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#931A1A"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Highway Extension</div>
+          <div class="proj-pill-name">SLEX Toll Road 4 Extension to Quezon Province</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Quezon Province
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/07.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#7E1414"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Railway Infrastructure</div>
+          <div class="proj-pill-name">PNR Project (South Commuter Railway – Calamba)</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Calamba, Laguna
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/08.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#680D0D"></div>
+          <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Port / Marine</div>
+          <div class="proj-pill-name">Jetty Port Mauban, Quezon</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Mauban, Quezon
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+        <img src="img/proj/09.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#520707"></div>
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Renewable Energy</div>
+          <div class="proj-pill-name">Kalayaan 2 Wind Power Project</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Kalayaan, Laguna
+          </div>
+        </div>
+      </div>
+      <div class="proj-pill" onclick="openPill(this)">
+       <img src="img/proj/10.jpg" alt="" class="proj-pill-bg">
+        <div class="proj-pill-tint" style="background:#3D0000"></div>        
+        <div class="proj-pill-overlay"></div>
+        <div class="proj-pill-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+        <div class="proj-pill-content">
+          <div class="proj-pill-type">Road Infrastructure</div>
+          <div class="proj-pill-name">Taal Lake Circumferential Road (TLCR)</div>
+          <div class="proj-pill-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Batangas & Cavite
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section" id="quote">
+    <div class="quote-text">
+      <h2>Ready to Start Your Next Project?</h2>
+      <p>Call our sales team directly — no forms, no waiting. <br>Just a straightforward conversation about what your project needs.</p>
+    </div>
+   <div class="cta-contacts">
+      <div class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.5 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div><div class="contact-lbl">Head Office</div><div class="contact-num">02 889 11 486</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div>
+          <div class="contact-lbl">Sales — Mobile / Viber</div>
+          <div class="contact-num">0917 817 9255</div>
+          <div class="contact-num">0998 984 0699</div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <div class="contact-info">
+      <div class="section-eyebrow" style="margin-bottom:12px"><div class="s-line"></div><span class="s-tag">Get in Touch</span></div>
+      <h2 style="font-size:42px;margin-bottom:36px">CONTACT US</h2>
+      <div class="contact-item"><div class="contact-icon"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span></div><div><div class="contact-label">Address</div><div class="contact-value">Makiling Quarry, Brgy. Sta. Clara,<br/>Sto. Tomas City, Batangas<br/><span style="color:var(--gray);font-size:12px">A subsidiary of Superior Motor Corp.</span></div></div></div>
+      <div class="contact-item"><div class="contact-icon"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span></div><div><div class="contact-label">Head Office</div><div class="contact-value">02 889 11 486</div></div></div>
+      <div class="contact-item"><div class="contact-icon"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="5" y="2" width="14" height="16" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div><div class="contact-label">Sales Team — Mobile / Viber</div><div class="contact-value">0917 817 9255  ·  0998 984 0699</div></div></div>
+     
+<a class="contact-item" href="mailto:sales@superiorconstruction.ph" style="text-decoration:none;color:inherit">
+  <div class="contact-icon"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span></div>
+  <div><div class="contact-label">Email</div><div class="contact-value">sales@superiorconstruction.ph</div></div>
+</a>
+
+<a class="contact-item" href="https://facebook.com/superiorconstruction.ph" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+  <div class="contact-icon"><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span></div>
+  <div><div class="contact-label">Facebook</div><div class="contact-value">facebook.com/superiorconstruction.ph</div></div>
+</a>
+
+    </div>
+<div class="contact-map" style="position:relative">
+  <iframe src="https://maps.google.com/maps?q=14.011973,121.2212411&hl=en&z=17&t=k&output=embed" loading="lazy" allowfullscreen title="SCDC quarry location map" style="width:100%;height:100%;border:0;min-height:350px"></iframe>
+
+  <div class="map-pin-badge">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    <span>Makiling Quarry, Sto. Tomas, Batangas</span>
+  </div>
+</div>
+  </div>
+
+ <!-- FOOTER -->
+<footer class="main-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="footer-logo" href="index.html" onclick="showPage('home')">
+        <div class="nav-logo-img">
+          <img src="img/logo.png" alt="SCDC Superior Construction and Development Corp">
+         </div> 
+         </a>
+        <p class="footer-desc">Premium quarry aggregates and construction materials for Luzon's biggest infrastructure projects. A subsidiary of Superior Motor Corp.</p>  
+    </div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="#" onclick="showPage('home');setTimeout(function(){document.getElementById('projects').scrollIntoView({behavior:'smooth'})},80)">Projects</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="svc/service-quarry.html">Quarry Operations</a></li><li><a href="svc/service-crusher.html">Crusher Plant</a></li><li><a href="svc/service-equipment.html">Heavy Equipment</a></li><li><a href="svc/service-deliver.html">Source & Deliver</a></li></ul></div>
+    <div class="footer-col"><h4>Products</h4><ul><li><a href="#">Road Materials</a></li><li><a href="#">Concrete Aggregates</a></li><li><a href="#">Drainage Fill</a></li><li><a href="#">Erosion Control</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 <span>Superior Construction Philippines</span>. All rights reserved.</span><span>sales@superiorconstruction.ph</span></div>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function scrollToSection(id){
+  setTimeout(function(){
+    var el=document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
+}
+function scrollToMaterials(cat){
+  setTimeout(function(){
+    var sec=document.getElementById('materials');
+    if(sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){
+      var platter=document.querySelector('.cat-'+cat);
+      if(platter) toggleDrawer(cat,platter);
+    },600);
+  },80);
+}
+
+function switchSvcById(id){
+  // hide all panels
+  ['svc-quarry','svc-crusher','svc-equipment','svc-deliver'].forEach(function(s){
+    document.getElementById(s).style.display='none';
+  });
+  // show target
+  document.getElementById(id).style.display='block';
+  // update tabs
+  document.querySelectorAll('.sel-btn').forEach(function(b){ b.classList.remove('active'); });
+  var tabMap={'svc-quarry':'tab-quarry','svc-crusher':'tab-crusher','svc-equipment':'tab-equipment','svc-deliver':'tab-deliver'};
+  var tab=document.getElementById(tabMap[id]);
+  if(tab) tab.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleDrawer(cat,el){
+  var allD=document.querySelectorAll('.product-drawer');
+  var allP=document.querySelectorAll('.cat-platter');
+  var drawer=document.getElementById('drawer-'+cat);
+  var isOpen=drawer.classList.contains('open');
+  // close all
+  allD.forEach(function(d){
+    d.classList.remove('open');
+    d.style.display='none';
+  });
+  allP.forEach(function(p){p.classList.remove('active')});
+  if(!isOpen){
+    // force re-run animation by resetting display
+    drawer.style.display='none';
+    void drawer.offsetWidth; // reflow
+    drawer.style.display='';
+    drawer.classList.add('open');
+    el.classList.add('active');
+    setTimeout(function(){drawer.scrollIntoView({behavior:'smooth',block:'nearest'})},80);
+  }
+};
+/* drag-to-scroll on accordion */
+(function(){
+  var el = document.getElementById('projAccordion');
+  if(!el) return;
+  var isDown=false, startX, scrollLeft;
+  el.addEventListener('mousedown',function(e){
+    isDown=true; startX=e.pageX-el.offsetLeft; scrollLeft=el.scrollLeft;
+  });
+  el.addEventListener('mouseleave',function(){isDown=false});
+  el.addEventListener('mouseup',function(){isDown=false});
+  el.addEventListener('mousemove',function(e){
+    if(!isDown) return;
+    e.preventDefault();
+    var x=e.pageX-el.offsetLeft;
+    el.scrollLeft=scrollLeft-(x-startX)*1.2;
+  });
+})();
+
+function toggleDrop(e,li){
+  e.stopPropagation();
+  var isOpen=li.classList.contains('drop-open');
+  document.querySelectorAll('.nav-links li').forEach(function(l){l.classList.remove('drop-open')});
+  if(!isOpen) li.classList.add('drop-open');
+}
+function closeDrop(e){
+  document.querySelectorAll('.nav-links li').forEach(function(l){l.classList.remove('drop-open','open')});
+}
+document.addEventListener('click',function(){
+  document.querySelectorAll('.nav-links li').forEach(function(l){l.classList.remove('drop-open')});
+});
+function closeDrawer(cat){
+  document.getElementById('drawer-'+cat).classList.remove('open');
+  document.querySelectorAll('.cat-platter').forEach(function(p){p.classList.remove('active')});
+}
+
+function openPill(el){
+  var pills=document.querySelectorAll('#projAccordion .proj-pill');
+  var wasOpen=el.classList.contains('open');
+  pills.forEach(function(p){p.classList.remove('open');});
+  if(!wasOpen){el.classList.add('open');}
+}
+ 
+
+
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinksEl = document.querySelector('.nav-links');
+
+burgerBtn.addEventListener('click', () => {
+  burgerBtn.classList.toggle('open');
+  navLinksEl.classList.toggle('open');
+});
+
+// Tap-to-open dropdown for touch/mobile widths; desktop keeps :hover
+document.querySelectorAll('.has-dropdown > a.has-drop').forEach(link => {
+  link.addEventListener('click', function (e) {
+    if (window.innerWidth <= 900) {
+      e.preventDefault();
+      this.parentElement.classList.toggle('open');
+    }
+  });
+});
+
+// Close mobile menu when a real link (not the dropdown toggle) is tapped
+document.querySelectorAll('.nav-links a:not(.has-drop)').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinksEl.classList.remove('open');
+    burgerBtn.classList.remove('open');
+  });
+});
+
+/* ============================================================
+   LIGHTBOX — reusable, future-proof, no hardcoded paths
+   Works on any current or future .prod-img element automatically.
+============================================================ */
+
+// Event delegation: catches clicks on .prod-img now and for any
+// cards added later, without needing inline onclick per card.
+document.addEventListener('click', function(e){
+  const trigger = e.target.closest('.prod-img');
+  if(!trigger) return;
+  const img = trigger.querySelector('img');
+  if(!img) return;
+  openLightbox(img);
+});
+
+function openLightbox(imgEl){
+  const overlay   = document.getElementById('lightbox');
+  const lbImg     = document.getElementById('lightbox-img');
+  const lbFallback= document.getElementById('lightbox-fallback');
+  const lbCaption = document.getElementById('lightbox-caption');
+
+  const src   = imgEl.getAttribute('src') || '';
+  const alt   = imgEl.getAttribute('alt') || '';
+  const known = imgEl.dataset.broken === 'true'; // already failed once (from card's onerror)
+
+  lbCaption.textContent = alt;
+
+  // No src at all, or already known to be broken -> skip straight to fallback
+  if(!src || known){
+    showFallback();
+    return;
+  }
+
+  // Otherwise verify it actually loads before committing to it
+  const test = new Image();
+  test.onload  = () => showImage(src, alt);
+  test.onerror = () => showFallback();
+  test.src = src;
+
+  function showImage(s, a){
+    lbImg.src = s;
+    lbImg.alt = a;
+    lbImg.style.display = 'block';
+    lbFallback.style.display = 'none';
+    reveal();
+  }
+  function showFallback(){
+    lbImg.style.display = 'none';
+    lbFallback.style.display = 'flex';
+    reveal();
+  }
+  function reveal(){
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeLightbox(){
+  const overlay = document.getElementById('lightbox');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOnOverlay(event){
+  if(event.target.id === 'lightbox'){
+    closeLightbox();
+  }
+}
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>
